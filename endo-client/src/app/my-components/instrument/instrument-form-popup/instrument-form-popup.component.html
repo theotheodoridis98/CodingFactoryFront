@@ -1,0 +1,76 @@
+<div class="form-popup">
+
+  <div fxLayoutAlign="space-between center">
+
+    <h2 mat-dialog-title>{{id ? 'Edit Instrument' : 'Create Instrument'}}</h2>
+
+    <button mat-icon-button tabindex="-1" (click)="onClose()">
+      <mat-icon matTooltip="close">close</mat-icon>
+    </button>
+  </div>
+
+  <form [formGroup]="form">
+
+    <mat-dialog-content style="max-height: 80vh" fxLayout='column'>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input [formControl]="form.controls.instrumentName" matInput>
+      </mat-form-field>
+
+      <control-message *ngIf="form.controls['instrumentName'].touched" [control]="form.controls.instrumentName">
+      </control-message>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea [formControl]="form.controls.instrumentDescription" matInput></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>REF</mat-label>
+        <input [formControl]="form.controls.instrumentRef" matInput>
+      </mat-form-field>
+
+      <control-message *ngIf="form.controls['instrumentRef'].touched" [control]="form.controls.instrumentRef">
+      </control-message>
+
+      <mat-form-field appearance="fill">
+        <mat-label>LOT</mat-label>
+        <input [formControl]="form.controls.instrumentLot" matInput>
+      </mat-form-field>
+
+      <control-message *ngIf="form.controls['instrumentLot'].touched" [control]="form.controls.instrumentLot">
+      </control-message>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Manufacturer</mat-label>
+        <input [formControl]="form.controls.instrumentManufacturer" matInput>
+      </mat-form-field>
+
+      <control-message *ngIf="form.controls['instrumentManufacturer'].touched"
+        [control]="form.controls.instrumentManufacturer">
+      </control-message>
+
+      <mat-form-field>
+        <mat-label>Purchase Date</mat-label>
+        <input [formControl]="form.controls.instrumentPurchaseDate" matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <control-message *ngIf="form.controls['instrumentPurchaseDate'].touched"
+        [control]="form.controls.instrumentPurchaseDate">
+      </control-message>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Notes</mat-label>
+        <textarea [formControl]="form.controls.instrumentNotes" matInput></textarea>
+      </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions fxLayoutAlign="center center">
+      <button (click)="onSaveInstrument()" [disabled]="!form.valid" type="submit"
+        class="mat-raised-button mat-primary">Save</button>
+    </mat-dialog-actions>
+  </form>
+</div>
